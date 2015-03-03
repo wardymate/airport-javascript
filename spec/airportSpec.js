@@ -17,9 +17,22 @@ describe("Airport ", function(){
     expect(plane.land).toHaveBeenCalled();
   });
 
-  it("should not allow a plane to land when it's full", function(){
-    airport.isFull;
-    expect(plane.land).toThrowError("Airport is full")
+  it("should know when it is empty", function() {
+    expect(airport.isFull).toBe(false);
   });
+
+  it("should know when it is full", function() {
+    airport.dock(plane);
+    airport.dock(plane);
+    airport.dock(plane);
+    expect(airport.isFull).toBe(true);
+  });
+
+
+
+  // it("should not allow a plane to land when the airport is full", function(){
+  //   airport.isFull;
+  //   expect(plane.land).toThrowError("Airport is full")
+  // });
 
 });
