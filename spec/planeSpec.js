@@ -7,5 +7,10 @@ describe("Plane", function() {
     expect(plane.isFlying).toBe(true)
   });
 
+  it("can land", function(){
+    plane = new Plane();
+    plane.land;
+    expect(plane.isFlying).toBe(false)
+  });
 
 });
