@@ -4,4 +4,6 @@ var Airport = function() {
 
 Airport.prototype.dock = function(plane) {
   this.planes.push(plane);
+  plane.land();
 };
+
