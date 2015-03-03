@@ -1,10 +1,14 @@
 describe("Airport ", function(){
   var airport;
   var plane;
+  var plane2;
+  var plane3;
 
   beforeEach(function() {
     airport = new Airport();
     plane = jasmine.createSpyObj('plane', ['land','takeOff']);
+    plane2 = jasmine.createSpyObj('plane', ['land','takeOff']);
+    plane3 = jasmine.createSpyObj('plane', ['land','takeOff']);
   });
 
   it("can dock a plane", function(){
@@ -17,15 +21,24 @@ describe("Airport ", function(){
     expect(plane.land).toHaveBeenCalled();
   });
 
-  it("should know when it is empty", function() {
-    expect(airport.isFull).toBe(false);
+  it ('should know its capacity', function() {
+    expect(airport.capacity).toEqual(3);
   });
 
-  it("should know when it is full", function() {
+  it("should be empty when created", function() {
+    expect(airport.planes.length).toEqual(0);
+  });
+
+  it("should know how many planes it is holding", function() {
     airport.dock(plane);
+    expect(airport.planes.length).toEqual(1);
+  });
+
+  it ('should know if it is full', function() {
     airport.dock(plane);
-    airport.dock(plane);
-    expect(airport.isFull).toBe(true);
+    airport.dock(plane2);
+    airport.dock(plane3);
+    expect(airport.isFull).toEqual(true);
   });
 
 

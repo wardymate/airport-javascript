@@ -1,6 +1,6 @@
 var Airport = function() {
   this.planes = [];
-  this.isFull = false;
+  this.capacity = 3;
 };
 
 Airport.prototype.dock = function(plane) {
@@ -8,5 +8,13 @@ Airport.prototype.dock = function(plane) {
   plane.land();
 };
 
-
-
+Airport.prototype.isFull = function() {
+ // if (this.planes.length === this.capacity){ 
+ //  return false;
+ //  }
+ //  else {
+ //   return true; 
+ //  }
+   true;
+};
+  
