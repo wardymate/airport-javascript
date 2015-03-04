@@ -1,6 +1,7 @@
 var Airport = function() {
-  this.planes = [];
   this.capacity = 3;
+  this.planes = [];
+  this.full = false
 };
 
 Airport.prototype.dock = function(plane) {
@@ -8,13 +9,16 @@ Airport.prototype.dock = function(plane) {
   plane.land();
 };
 
-Airport.prototype.isFull = function() {
- // if (this.planes.length === this.capacity){ 
- //  return false;
- //  }
- //  else {
- //   return true; 
- //  }
-   true;
+Airport.prototype.count_planes = function() {
+  this.planes.length
 };
-  
+
+Airport.prototype.checkIfFull = function() {
+  if (this.planes.length >= this.capacity) {
+    this.full = true;
+  } else {
+    this.full = false;
+  };
+};
+
+

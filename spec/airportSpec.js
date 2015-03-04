@@ -1,15 +1,18 @@
 describe("Airport ", function(){
   var airport;
-  var plane;
-  var plane2;
-  var plane3;
+  // var plane;
+});
 
   beforeEach(function() {
     airport = new Airport();
     plane = jasmine.createSpyObj('plane', ['land','takeOff']);
-    plane2 = jasmine.createSpyObj('plane', ['land','takeOff']);
-    plane3 = jasmine.createSpyObj('plane', ['land','takeOff']);
   });
+
+  function fillAirport() {
+  for (i = 0; i < 3; i++) {
+    airport.dock(plane);
+  };
+  };
 
   it("can dock a plane", function(){
     airport.dock(plane);
@@ -34,18 +37,21 @@ describe("Airport ", function(){
     expect(airport.planes.length).toEqual(1);
   });
 
-  it ('should know if it is full', function() {
+  it("should know when it is not full", function() {
     airport.dock(plane);
-    airport.dock(plane2);
-    airport.dock(plane3);
-    expect(airport.isFull).toEqual(true);
+    airport.checkIfFull();
+    expect(airport.full).toBe(false);
   });
 
+  it ("should know if it is full", function() {
+    fillAirport();
+    airport.checkIfFull();
+    expect(airport.full).toBe(true);
+  });
 
-
-  // it("should not allow a plane to land when the airport is full", function(){
-  //   airport.isFull;
-  //   expect(plane.land).toThrowError("Airport is full")
+  // it("doesn't allow any more than planes to land when full", function() {
+  //   fillAirport();
+  //   expect(function() {
+  //     airport.land(plane);
+  //   }).toThrow(new Error("Airport is full"));
   // });
-
-});
