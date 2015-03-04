@@ -39,19 +39,30 @@ describe("Airport ", function(){
 
   it("should know when it is not full", function() {
     airport.dock(plane);
-    airport.checkIfFull();
+    airport.isFull();
     expect(airport.full).toBe(false);
   });
 
   it ("should know if it is full", function() {
     fillAirport();
-    airport.checkIfFull();
+    airport.isFull();
     expect(airport.full).toBe(true);
   });
 
-  // it("doesn't allow any more than planes to land when full", function() {
-  //   fillAirport();
-  //   expect(function() {
-  //     airport.land(plane);
-  //   }).toThrow(new Error("Airport is full"));
-  // });
+  it("doesn't allow any more than planes to land when full", function() {
+    fillAirport();
+    expect(function() {
+    airport.dock(plane);
+    }).toThrow(new Error("Airport is full"));
+  });
+
+  it("doesn't allow planes to land when it is stormy", function () {
+    airport.beStormy();
+    expect(function() {
+    airport.dock(plane);
+    }).toThrow(new Error("It's too stormy to land!"));
+  });
+
+
+
+
